@@ -12,8 +12,21 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-        rb.AddForce(0, 0, speed * Time.deltaTime);
-        var sideMovement = Input.GetAxis("Horizontal") * sidewaySpeed;
-        rb.AddForce(sideMovement * Time.deltaTime, 0, 0);
+        if (!GameControl.instance.isGameOver)
+        {
+            rb.AddForce(0, 0, speed * Time.deltaTime);
+            var sideMovement = Input.GetAxis("Horizontal") * sidewaySpeed;
+            rb.AddForce(sideMovement * Time.deltaTime, 0, 0);
+        }
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Obstacle")
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            GameControl.instance.Lose();
+        }
+    }
 }
