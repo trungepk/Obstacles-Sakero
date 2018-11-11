@@ -22,8 +22,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         if(collision.collider.tag == "Obstacle")
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
             GameControl.instance.Lose();
         }
     }

@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour {
         {
             obstacles[i] = Instantiate(obstaclePrefab, objectPoolPosition, Quaternion.identity);
         }
-
     }
 
     void Update ()
